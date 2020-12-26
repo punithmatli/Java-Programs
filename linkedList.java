@@ -1,14 +1,18 @@
 import java.io.*;
 import java.util.*;
 
-class LinkedListNode
+public class Main
 {
-  int data;
-  LinkedListNode next;
-    LinkedListNode (int d)
+  LinkedListNode head;
+  static class LinkedListNode
   {
-    data = d;
-    next = null;
+    int data;
+    LinkedListNode next;
+      LinkedListNode (int d)
+    {
+      data = d;
+      next = null;
+    }
   }
   LinkedListNode addAtFirst (LinkedListNode head, int value)
   {
@@ -42,33 +46,33 @@ class LinkedListNode
     return head;
   }
 
-  LinkedListNode removeAtFirst ()
+  LinkedListNode removeAtFirst (LinkedListNode head)
   {
-    if (this == null)
-      return this;
-    return this.next;
+    if (head == null)
+      return head;
+    return head.next;
   }
 
-  LinkedListNode removeAtLast ()
+  LinkedListNode removeAtLast (LinkedListNode head)
   {
-    if (this == null || this.next == null)
+    if (head == null || head.next == null)
       return null;
-    LinkedListNode n = this;
+    LinkedListNode n = head;
     while (n.next.next != null)
       {
 	n = n.next;
       }
     n.next = null;
-    return this;
+    return head;
   }
 
-  LinkedListNode removeDups ()
-  {
-    if (this == null)
-      return this;
+  void removeDups (LinkedListNode head)
+  {//This method is to remove duplicates
+    if (head == null)
+      return;
     HashSet < Integer > set = new HashSet < Integer > ();
-    LinkedListNode prev = this;
-    LinkedListNode curr = this.next;
+    LinkedListNode prev = head;
+    LinkedListNode curr = head.next;
     set.add (prev.data);
     while (curr != null)
       {
@@ -83,24 +87,32 @@ class LinkedListNode
 	  }
 	curr = curr.next;
       }
-    return this;
   }
-}
+  LinkedListNode reverseLinkedList(LinkedListNode head) {
+     if(head == null || head.next == null) return head;
+     LinkedListNode prev = null, curr = head, next = head;
+     while(curr != null) {
+         next = curr.next;
+         curr.next = prev;
+         prev = curr;
+         curr = next;
+     }
+     return prev;
+     }
 
-public class Main
-{
   public static void main (String[]args)
   {
     Scanner sc = new Scanner (System.in);
-    LinkedListNode head = new LinkedListNode (1);
-      head = head.addAtFirst (head, 2);
-      head = head.addAtFirst (head, 3);
-      head = head.addAtLast (head, 2);
-      head = head.addAtLast (head, 7);
-    //head = head.removeAtFirst();
-    //head = head.removeAtLast();
-
-      head = head.removeDups ();
-      head.traverseList (head);
+    Main ll = new Main ();
+    ll.head = new LinkedListNode (1);
+     ll.head = ll.addAtFirst (ll.head, 2);
+    ll.head = ll.addAtFirst (ll.head, 3);
+    ll.head = ll.addAtLast (ll.head, 2);
+    ll.head = ll.addAtLast (ll.head, 7);
+    //ll.head = ll.removeAtFirst (ll.head);
+    //ll.head = ll.removeAtLast (ll.head);
+    ll.removeDups (ll.head);
+    ll.head = ll.reverseLinkedList(ll.head);
+    ll.traverseList (ll.head);
   }
 }
