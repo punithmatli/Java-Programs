@@ -27,3 +27,10 @@ class Main
 	  }
   }
 }
+
+/*
+Input
+1 50 rscdrregojwcpsxpfjlxbksvulbsugewwxaresuhkokbpslskx
+Output
+ucrcrsdroegjwjxpspfblxskvseslbugxwwraebkuhoklpsksx
+*/
